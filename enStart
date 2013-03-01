@@ -1,0 +1,47 @@
+package enStart;
+
+import java.util.logging.Logger;
+
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class enStart extends JavaPlugin{
+  Logger log = Logger.getLogger("Minecraft");
+	public FileConfiguration config;
+	
+	public void onEnable(){ 
+		log.info("Плагин Деда включён");
+		this.config = getConfig(); 
+	}
+	
+	
+	public class myPlayerListener implements Listener {
+	    @EventHandler
+	    public void OnPlayerJoin(PlayerLoginEvent event) {
+	    	 Player player = event.getPlayer();
+	    	 PlayerInventory inventory = player.getInventory();
+	    	 ItemStack Apple = new ItemStack(Material.APPLE, 3);
+	    	 ItemStack Spade = new ItemStack(Material.STONE_SPADE , 1);
+	    	 ItemStack Pickaxe = new ItemStack(Material.STONE_PICKAXE , 1);
+	    	 ItemStack Axe = new ItemStack(Material.STONE_AXE , 1);
+	    	 ItemStack Beef = new ItemStack(Material.COOKED_BEEF , 5);
+	    	 ItemStack Wood = new ItemStack(Material.WOOD , 64);
+	    	 ItemStack Sapling = new ItemStack(Material.SAPLING , 3);
+	    	 ItemStack Torch = new ItemStack(Material.TORCH , 32);
+	    	 inventory.addItem(Apple,Spade,Pickaxe,Axe,Beef,Wood,Sapling,Torch); 
+	         player.sendMessage(ChatColor.GOLD + "Welcome! You seem to be reeeally rich, so we gave you some more diamonds!");
+	    }
+	}
+	public void onDisable(){ 
+		log.info("Плагин Деда выключен");
+	}
+
+		}
